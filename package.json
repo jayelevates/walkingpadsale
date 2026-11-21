@@ -1,0 +1,1 @@
+{ "name": "walkingpadsale", "private": true, "version": "1.0.0", "scripts": { "build": "node generate.mjs" }, "engines": { "node": ">=20" } }
