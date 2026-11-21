@@ -15,13 +15,17 @@ const abs = (p) => ORIGIN + href(p);
 const idOf = (s) => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 const style = readFileSync(join(root, 'lib/theme.css'), 'utf8').replace(/\s+/g, ' ').replace(/\s*([{};:,>])\s*/g, '$1');
 
-const MENU = [['Deals', ''], ['Best walking pads', 'best-walking-pad'], ['With incline', 'best-walking-pad-with-incline'], ['Under desk', 'best-under-desk-treadmill'], ['Folding treadmills', 'best-folding-treadmill'], ['All guides', 'guides']];
+const MENU = [['Deals', ''], ['Black Friday', 'walking-pad-black-friday-deals'], ['Best walking pads', 'best-walking-pad'], ['With incline', 'best-walking-pad-with-incline'], ['Treadmills', 'best-treadmill-for-home'], ['All guides', 'guides']];
 const SHELF = [
-  ['Deals', ['']],
-  ['Best walking pads', ['best-walking-pad', 'best-walking-pad-with-incline', 'best-walking-pad-with-handle', 'best-under-desk-treadmill', 'best-quiet-walking-pad', 'best-cheap-walking-pad', 'best-walking-pad-for-heavy-people']],
-  ['Treadmills', ['best-folding-treadmill']],
-  ['Reviews', ['urevo-walking-pad-review', 'goplus-2-in-1-review']],
-  ['Guides', ['walking-pad-vs-treadmill', 'what-is-a-walking-pad', 'can-you-run-on-a-walking-pad']],
+  ['Deals and timing', ['', 'walking-pad-black-friday-deals', 'treadmill-black-friday-deals', 'treadmill-deals']],
+  ['Best walking pads', ['best-walking-pad', 'best-walking-pad-with-incline', 'best-walking-pad-with-handle', 'best-under-desk-treadmill', 'best-quiet-walking-pad', 'best-cheap-walking-pad', 'best-walking-pad-for-heavy-people', 'best-walking-pad-for-seniors', 'best-walking-pad-for-tall-people', 'best-mini-treadmill']],
+  ['Treadmills', ['best-treadmill-for-home', 'best-budget-treadmill', 'best-incline-treadmill', 'best-walking-treadmill', 'best-folding-treadmill', 'best-folding-treadmill-for-small-spaces', 'best-compact-treadmill', 'best-portable-treadmill', 'best-manual-treadmill', 'best-curved-treadmill']],
+  ['Walking pad reviews', ['urevo-walking-pad-review', 'kingsmith-walkingpad-review', 'deerrun-walking-pad-review', 'merach-walking-pad-review', 'redliro-walking-pad-review', 'lichico-walking-pad-review', 'superun-walking-pad-review', 'sperax-walking-pad-review']],
+  ['Treadmill reviews', ['goplus-2-in-1-review', 'horizon-7-0-at-review', 'sole-treadmill-review', 'proform-treadmill-review', 'bowflex-treadmill-review', 'wellfit-treadmill-review', 'superfit-treadmill-review']],
+  ['Desk setups and gear', ['standing-desk-and-treadmill', 'best-treadmill-mat', 'best-weighted-vest-for-walking', 'best-shoes-for-treadmill-walking']],
+  ['Workouts and tools', ['treadmill-incline-calculator', '12-3-30-treadmill-workout', 'incline-treadmill-workout', 'hiit-treadmill-workout', 'treadmill-for-weight-loss', 'walking-pad-for-weight-loss']],
+  ['Guides', ['walking-pad-vs-treadmill', 'what-is-a-walking-pad', 'can-you-run-on-a-walking-pad', 'is-a-walking-pad-worth-it', 'walking-pad-weight-limit', 'walking-pad-fsa-hsa-eligible', 'walking-pad-recalls']],
+  ['Care', ['how-to-lube-a-walking-pad', 'how-to-tighten-walking-pad-belt', 'walking-pad-on-carpet']],
 ];
 for (const d of pages) if (!d.plain && !SHELF.some(([, l]) => l.includes(d.path))) throw new Error('Missing from guides page: ' + d.path);
 const shelved = SHELF.flatMap(([, l]) => l).length;
@@ -91,6 +95,7 @@ ${graph(d)}
 ${hero}
 <div class="shell cols${toc ? '' : ' one'}" id="content"><main>${head}<div class="prose">${main}</div>${qa}${refs}${more}</main>${toc}</div>
 <footer class="base"><div class="shell"><strong>${SITE}</strong><nav aria-label="Footer"><a href="/guides/">All guides</a><a href="/how-we-choose/">How we choose</a><a href="/affiliate-disclosure/">Affiliate disclosure</a><a href="/privacy/">Privacy</a><a href="/terms/">Terms</a><a href="/contact/">Contact</a></nav><p>We may earn a commission when you buy through links on this site, at no cost to you. Speeds, limits and prices come from maker listings and change often, so check the seller's page before you buy. Talk to a doctor before starting a new exercise routine.</p></div></footer>
+${d.script ? `<script>${d.script}</script>` : ''}
 </body>
 </html>`;
 }
