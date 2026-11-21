@@ -4,6 +4,8 @@ import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { ORIGIN, SITE, WRITER, ISO, AS_OF, safe } from './lib/site.mjs';
 import pages from './content/pages.mjs';
+import { autolink } from './lib/links.mjs';
+import { ANCHORS } from './lib/anchors.mjs';
 import legal from './content/legal.mjs';
 
 const root = dirname(fileURLToPath(import.meta.url));
@@ -51,13 +53,19 @@ function graph(d) {
 
 const cup = `<svg width="34" height="22" viewBox="0 0 34 22" aria-hidden="true"><rect x="1" y="8" width="32" height="10" rx="5" fill="#23262B"/><path d="M7 13h20" stroke="#F2541B" stroke-width="3" stroke-dasharray="4 3"/><circle cx="6" cy="13" r="2" fill="#fff"/><circle cx="28" cy="13" r="2" fill="#fff"/></svg>`;
 
+const fmapCols = [['Deals', (p) => /sale|deals|black-friday/.test(p)], ['Best picks', (p) => /^best-/.test(p)], ['Reviews', (p) => /-review$/.test(p)], ['Guides and comparisons', (p) => true]];
+const fmap = (() => { const seen = new Set(); const cols = fmapCols.map(([t, f]) => { const items = pages.filter((x) => x.path && !x.legal && x.path !== 'guides' && !seen.has(x.path) && f(x.path)); items.forEach((x) => seen.add(x.path)); return [t, items.slice(0, 8)]; }); return `<div class="fmap">${cols.map(([t, items]) => `<div><b>${t}</b>${items.map((x) => `<a href="/${x.path}/">${safe(x.short || x.heading)}</a>`).join('')}</div>`).join('')}</div>`; })();
 function render(d) {
+  const unself = (h) => h.split(`<a class="rev" href="/${d.path}/">Read the full review</a>`).join('');
   const parts = d.parts || [];
   const toc = parts.length > 2 ? `<nav class="rail" aria-label="On this page"><b>Jump to</b>${parts.map((s) => `<a href="#${idOf(s[0])}">${safe(s[0])}</a>`).join('')}${d.asked?.length ? '<a href="#questions">Questions</a>' : ''}</nav>` : '';
-  const main = parts.map(([h, html]) => `<section><h2 id="${idOf(h)}">${safe(h)}</h2>${html}</section>`).join('');
+  const main0 = d.legal || d.path === 'guides' ? parts.map(([h, html]) => `<section><h2 id="${idOf(h)}">${safe(h)}</h2>${html}</section>`).join('') : autolink(parts.map(([h, html]) => `<section><h2 id="${idOf(h)}">${safe(h)}</h2>${html}</section>`).join(''), d.path, ANCHORS);
+  const main = unself(main0);
   const qa = d.asked?.length ? `<section class="qa"><h2 id="questions">Questions people ask</h2>${d.asked.map(([q, a]) => `<details><summary>${safe(q)}</summary><p>${a}</p></details>`).join('')}</section>` : '';
   const refs = d.refs?.length ? `<section class="refs"><h2 id="sources">Sources</h2><ol>${d.refs.map(([t, u]) => `<li><a href="${u}" rel="nofollow noopener">${safe(t)}</a></li>`).join('')}</ol></section>` : '';
-  const next = (d.next || []).map(find).filter(Boolean);
+  const next0 = (d.next || []).map(find).filter(Boolean);
+  const grp = (p) => fmapCols.findIndex(([, f]) => f(p || ''));
+  const next = d.legal || !d.path || d.path === 'guides' ? next0 : [...next0, ...pages.filter((x) => x.path && !x.legal && x.path !== 'guides' && x.path !== d.path && !next0.includes(x) && grp(x.path) === grp(d.path))].slice(0, 6);
   const more = next.length ? `<section class="more"><h2>Read next</h2><ul class="tiles">${next.map((n) => `<li><a href="${href(n.path)}"><b>${safe(n.short || n.heading)}</b><span>${safe(n.blurb || n.summary)}</span></a></li>`).join('')}</ul></section>` : '';
   const stamp = d.legal || d.nostamp ? '' : `<p class="stamp">By ${WRITER}. Updated <time datetime="${d.iso || ISO}">${d.asOf || AS_OF}</time>.</p>`;
   const tops = [...(parts.map((p) => p[1]).join('')).matchAll(/<article class="pick" id="(pick-[a-z0-9]+)"><header><p class="award">(.*?)<\/p><h3>(.*?)<\/h3>/g)];
@@ -94,7 +102,7 @@ ${graph(d)}
 <header class="bar"><div class="shell"><a class="mark" href="/">${cup}<span>walkingpadsale</span></a><nav class="menu" aria-label="Primary">${MENU.map(([t, p]) => `<a href="${href(p)}"${p === d.path ? ' aria-current="page"' : ''}>${t}</a>`).join('')}</nav></div></header>
 ${hero}
 <div class="shell cols${toc ? '' : ' one'}" id="content"><main>${head}<div class="prose">${main}</div>${qa}${refs}${more}</main>${toc}</div>
-<footer class="base"><div class="shell"><strong>${SITE}</strong><nav aria-label="Footer"><a href="/guides/">All guides</a><a href="/how-we-choose/">How we choose</a><a href="/affiliate-disclosure/">Affiliate disclosure</a><a href="/privacy/">Privacy</a><a href="/terms/">Terms</a><a href="/contact/">Contact</a></nav><p>We may earn a commission when you buy through links on this site, at no cost to you. Speeds, limits and prices come from maker listings and change often, so check the seller's page before you buy. Talk to a doctor before starting a new exercise routine.</p></div></footer>
+<footer class="base"><div class="shell">${fmap}<strong>${SITE}</strong><nav aria-label="Footer"><a href="/guides/">All guides</a><a href="/how-we-choose/">How we choose</a><a href="/affiliate-disclosure/">Affiliate disclosure</a><a href="/privacy/">Privacy</a><a href="/terms/">Terms</a><a href="/contact/">Contact</a></nav><p>We may earn a commission when you buy through links on this site, at no cost to you. Speeds, limits and prices come from maker listings and change often, so check the seller's page before you buy. Talk to a doctor before starting a new exercise routine.</p></div></footer>
 ${d.script ? `<script>${d.script}</script>` : ''}
 </body>
 </html>`;

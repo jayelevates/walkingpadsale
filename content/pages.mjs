@@ -4,4 +4,12 @@ import c from './wave2a.mjs';
 import d from './wave2b.mjs';
 import e from './wave2c.mjs';
 import f from './wave2d.mjs';
-export default [...a, ...b, ...c, ...d, ...e, ...f];
+import DEPTH from './depth/index.mjs';
+const ALL = [...a, ...b, ...c, ...d, ...e, ...f];
+for (const p of ALL) {
+  const d = DEPTH[p.path === '' ? '/' : '/' + String(p.path).replace(/^\/|\/$/g, '')];
+  if (!d) continue;
+  if (d.parts.length) p.parts = [...(p.parts || []), ...d.parts];
+  if (d.asked.length) p.asked = [...(p.asked || []), ...d.asked];
+}
+export default ALL;
