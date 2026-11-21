@@ -8,7 +8,7 @@ export default [
     path: '', short: 'Walking pad deals', blurb: 'When walking pads go on sale and which ones are worth it.',
     tab: 'Walking Pad Sale Guide 2026: Best Deals and When to Buy',
     summary: 'When walking pads and under-desk treadmills go on sale, how to judge a real discount, and the walking pads worth buying at every budget.',
-    heading: 'Walking pad sales, sorted',
+    heading: 'Walking pad sale: the best deals and when to buy',
     lede: 'Which walking pads are worth your money, when they get cheaper, and how to read the specs that actually matter.',
     hero: speedo,
     quick: 'Walking pads see their deepest discounts around New Year (when fitness gear sells), Prime Day in July and Black Friday through Cyber Monday. Budget pads from brands like Lichico and Superun get frequent discounts, and 2-in-1 models like the Goplus see big cuts. Before you buy, check three things: the belt length for your height, the weight limit, and whether you need incline or running speeds.',
