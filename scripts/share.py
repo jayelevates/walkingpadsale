@@ -34,15 +34,14 @@ def share(slug, title):
 for p in json.load(open(os.path.join(ROOT, 'scripts/share-list.json'))):
     share(p['slug'], p['title'])
 
-# Icons
-icon = Image.new('RGBA', (512, 512), INK); d = ImageDraw.Draw(icon)
-d.rounded_rectangle([60, 200, 452, 330], radius=65, fill='#30343B')
-for i in range(6): d.rectangle([110 + i * 52, 252, 140 + i * 52, 280], fill=CREMA)
+# Icons: drawn from static/icon.svg (the source of truth)
+import cairosvg, io
 st = os.path.join(ROOT, 'static')
-icon.save(os.path.join(st, 'icon-512.png'))
-icon.resize((192, 192)).save(os.path.join(st, 'icon-192.png'))
-icon.resize((180, 180)).save(os.path.join(st, 'apple-touch-icon.png'))
-icon.save(os.path.join(st, 'favicon.ico'), sizes=[(48, 48), (32, 32), (16, 16)])
-open(os.path.join(st, 'icon.svg'), 'w').write('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><rect width="512" height="512" rx="96" fill="#23262B"/><rect x="60" y="200" width="392" height="130" rx="65" fill="#30343B"/><path d="M110 266h290" stroke="#F2541B" stroke-width="28" stroke-dasharray="30 22"/></svg>')
+_svg = open(os.path.join(st, 'icon.svg')).read()
+_big = Image.open(io.BytesIO(cairosvg.svg2png(bytestring=_svg.encode(), output_width=1024, output_height=1024))).convert('RGBA')
+_big.resize((512, 512), Image.LANCZOS).save(os.path.join(st, 'icon-512.png'))
+_big.resize((192, 192), Image.LANCZOS).save(os.path.join(st, 'icon-192.png'))
+Image.open(io.BytesIO(cairosvg.svg2png(bytestring=_svg.replace('rx="104" ', '').encode(), output_width=180, output_height=180))).save(os.path.join(st, 'apple-touch-icon.png'))
+_big.resize((48, 48), Image.LANCZOS).save(os.path.join(st, 'favicon.ico'), sizes=[(48, 48), (32, 32), (16, 16)])
 json.dump({'name': 'Walking Pad Sale', 'short_name': 'Walking Pad Sale', 'icons': [{'src': '/icon-192.png', 'sizes': '192x192', 'type': 'image/png'}, {'src': '/icon-512.png', 'sizes': '512x512', 'type': 'image/png'}], 'theme_color': BLUE, 'background_color': BG, 'display': 'browser'}, open(os.path.join(st, 'site.webmanifest'), 'w'))
 print('share images and icons written')
