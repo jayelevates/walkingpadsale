@@ -7,16 +7,16 @@ export default [
     summary: 'The best walking pads and under-desk treadmills for heavier users, rated for 300 to 350 pounds, plus what to check beyond the weight limit.',
     heading: 'The best walking pads for heavy people',
     lede: 'A higher weight limit is only part of it. Belt width, motor and frame matter just as much for comfort and durability.',
-    quick: 'The best walking pad for heavier users is the Urevo CyberPad, rated to 350 pounds with a long, wide walking area. The LifeSpan TR1200-DT3 is rated to 350 pounds with a 20-inch-wide belt built for daily use. On a budget, the DeerRun Z10 is rated to 300 pounds with incline.',
+    quick: 'The best walking pad for heavier users is the Urevo CyberPad, which Urevo lists at 350 pounds, with a long, wide walking area. The LifeSpan TR1200-DT3 is listed at 350 pounds with a 20-inch-wide belt built for daily use, though the maker\'s current Glow-Up replacement lists 330. On a budget, the DeerRun Z10 is rated to 300 pounds with incline.',
     list: ['Urevo CyberPad', 'LifeSpan TR1200-DT3', 'DeerRun Z10', 'Cybergoing T10'],
     parts: [
-      ['Our picks', `${pick('cyberpad', 'Best overall', 'Rated to 350 pounds with a 43-inch walking area and incline.')}${pick('lifespan', 'Best heavy-duty desk treadmill', 'A wide 20-inch belt and a frame made for long daily sessions.')}${pick('deerrun', 'Best budget with incline', 'Rated to 300 pounds with automatic incline.')}${pick('cybergoing', 'Best fixed incline', 'Rated to 300 pounds with a fixed 7 percent slope.')}`],
+      ['Our picks', `${pick('cyberpad', 'Best overall', 'Urevo lists 350 pounds, a 43-inch walking area and incline; confirm the limit on the listing you buy.')}${pick('lifespan', 'Best heavy-duty desk treadmill', 'A wide 20-inch belt and a frame made for long daily sessions.')}${pick('deerrun', 'Best budget with incline', 'Rated to 300 pounds with automatic incline.')}${pick('cybergoing', 'Best fixed incline', 'Rated to 300 pounds with a fixed 7 percent slope.')}`],
       ['Compare', compare('Walking pads for heavier users', ['cyberpad', 'lifespan', 'deerrun', 'cybergoing'], ['Max user', 'Speed', 'Incline', 'Price band'])],
       ['What to check besides the weight limit', `<ul><li><b>Headroom:</b> choose a limit at least 30 to 50 pounds above your weight; motors and rollers last longer below their maximum.</li><li><b>Belt width:</b> 16 inches is common; 18 to 20 inches feels more stable.</li><li><b>Deck cushioning</b> eases joints on long walks.</li><li><b>Handrail:</b> if balance is a concern, consider a <a href="/best-walking-pad-with-handle/">walking pad with a handle</a>.</li></ul>`],
     ],
     asked: [
       ['What is the weight limit on a walking pad?', 'Most range from about 220 to 350 pounds. Heavy-duty desk treadmills and full treadmills go higher.'],
-      ['Can a 300 lb person use a walking pad?', 'Yes. Choose one rated to at least 350 pounds for headroom, such as the Urevo CyberPad or LifeSpan TR1200-DT3.'],
+      ['Can a 300 lb person use a walking pad?', 'Yes. Choose one rated to at least 350 pounds for headroom, such as the Urevo CyberPad (350 pounds on Urevo\'s page) or the LifeSpan TR1200-DT3 (350 pounds on older listings; the maker\'s current Glow-Up line lists 330).'],
     ],
     next: ['best-walking-pad', 'best-under-desk-treadmill', 'best-walking-pad-with-handle'],
   },
@@ -26,7 +26,7 @@ export default [
     summary: 'The best folding treadmills, from full-size running decks like the Horizon 7.0 AT and Sole F63 to compact 2-in-1 models that slide under a bed.',
     heading: 'The best folding treadmills',
     lede: 'A folding treadmill gives you running speeds without giving up the room for good. Here are the best at each size.',
-    quick: 'The best folding treadmill for runners is the Horizon 7.0 AT: a 20 by 60 inch deck, 12 mph and 15 percent incline, and it folds. The Sole F63 is the durability pick. For small spaces, the Echelon Stride auto-folds to stand against a wall, and the Goplus 2-in-1 and WalkingPad R2 fold flat for walking and light jogging.',
+    quick: 'The best folding treadmill for runners is the Horizon 7.0 AT: a 20 by 60 inch deck, 12 mph and 15 incline levels, and it folds. The Sole F63 is the durability pick. For small spaces, the Echelon Stride auto-folds to stand against a wall, and the Goplus 2-in-1 and WalkingPad R2 fold flat for walking and light jogging.',
     list: ['Horizon 7.0 AT', 'Sole F63', 'Echelon Stride', 'WalkingPad R2', 'Goplus 2-in-1 Folding Treadmill'],
     parts: [
       ['Our picks', `${pick('horizon70', 'Best overall', 'A full 60-inch running deck, quick speed and incline changes, and a fold-up design.')}${pick('solef63', 'Most durable', 'Sole is known for long warranties and solid frames.')}${pick('echelon', 'Best for tight rooms', 'Auto-fold design stands upright against a wall.')}${pick('walkingpadr2', 'Best compact runner', 'Folds flat yet runs to 7.5 mph on an aluminum frame.')}${pick('goplus', 'Best cheap folding treadmill', 'A budget 2-in-1 that slides under a bed.')}`],
@@ -45,7 +45,7 @@ export default [
     summary: 'Our Urevo walking pad review: the CyberPad and Strol models compared on incline, speed, weight limit and price, with who each one suits.',
     heading: 'Urevo walking pad review',
     lede: 'Urevo sells some of the most popular walking pads on Amazon. Here is how its lineup compares and which model to buy.',
-    quick: 'The Urevo CyberPad is the Urevo to buy for desk walking: automatic incline to 14 percent, a 43.3 by 16.5 inch walking area and a 350-pound limit. If you want to jog, the Strol 2E 2-in-1 reaches 6.2 mph with a fold-up rail but has a 265-pound limit. Our rating for the CyberPad: 8.4 out of 10.',
+    quick: 'The Urevo CyberPad is the Urevo to buy for desk walking: automatic incline to 14 percent, a 43.3 by 16.5 inch walking area and a 350-pound limit per Urevo. If you want to jog, the Strol 2E 2-in-1 reaches 6.2 mph with a fold-up rail but has a 265-pound limit. Our rating for the CyberPad: 8.4 out of 10.',
     list: ['Urevo CyberPad', 'Urevo Strol 2E'],
     parts: [
       ['The Urevo models', compare('Urevo walking pads compared', ['cyberpad', 'strol2e'], ['Speed', 'Incline', 'Max user', 'Price band'])],
@@ -71,7 +71,7 @@ export default [
     list: ['Goplus 2-in-1 Folding Treadmill'],
     parts: [
       ['At a glance', pick('goplus', 'Our rating: 7.6 out of 10', 'A 2.25 HP 2-in-1 with a walking mode for under-desk use and a running mode to 7.5 mph.')],
-      ['Two modes', `<p>In walking mode, with the handrail folded down, speed is limited to about 2.5 mph, which suits desk walking. Raise the rail and the running mode opens up speeds to 7.5 mph. OutdoorGearLab measured about 64 dB in its testing, a little louder than the budget walking pads it tested.</p>`],
+      ['Two modes', `<p>In walking mode, with the handrail folded down, speed is limited to about 2.5 mph, which suits desk walking. Raise the rail and the running mode opens up speeds to 7.5 mph. Expect it to be a little louder than most budget walking pads.</p>`],
       ['Pros and cons', `<ul><li><b>Pro:</b> walk and run in one machine.</li><li><b>Pro:</b> folds flat with transport wheels.</li><li><b>Pro:</b> frequently discounted.</li><li><b>Con:</b> 265-pound limit.</li><li><b>Con:</b> 40-inch belt is short for running strides.</li><li><b>Con:</b> louder than premium walking pads.</li></ul>`],
       ['Alternatives', `<p>For a sturdier 2-in-1 with a longer belt, see the ${nameLink('walkingpadr2')}. For walking only with incline, the <a href="/urevo-walking-pad-review/">Urevo CyberPad</a>.</p>${buy('goplus', 'Check Goplus price on Amazon')}`],
     ],
@@ -79,7 +79,6 @@ export default [
       ['How fast does the Goplus 2-in-1 go?', 'About 2.5 mph in walking mode and up to 7.5 mph in running mode with the handrail raised.'],
       ['What is the Goplus 2-in-1 weight limit?', 'It is rated for 265 pounds.'],
     ],
-    refs: [['OutdoorGearLab, Goplus SuperFit 2-in-1 review', 'https://outdoorgearlab.com/reviews/fitness/treadmill/goplus-superfit-2-in-1-folding-treadmill']],
     next: ['best-walking-pad-with-handle', 'best-folding-treadmill', 'can-you-run-on-a-walking-pad'],
   },
   {
@@ -135,7 +134,6 @@ export default [
       ['How fast can a walking pad go?', 'Most go up to about 4 mph. 2-in-1 models reach 6 to 7.5 mph with the rail raised.'],
       ['Is it bad to jog on a walking pad?', 'On a pad not designed for it, yes: the short deck and lack of a rail raise the risk of a fall, and running wears the motor faster.'],
     ],
-    refs: [['OutdoorGearLab, Goplus SuperFit 2-in-1 review (walk and run modes)', 'https://outdoorgearlab.com/reviews/fitness/treadmill/goplus-superfit-2-in-1-folding-treadmill']],
     next: ['best-walking-pad-with-handle', 'best-folding-treadmill', 'walking-pad-vs-treadmill'],
   },
 ];

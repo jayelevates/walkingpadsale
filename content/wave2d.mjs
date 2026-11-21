@@ -39,7 +39,7 @@ export default [
     parts: [
       ['How to do it', `${doctor}<ol class="steps"><li>Warm up for 3 to 5 minutes at 0 to 3 percent and an easy pace.</li><li>Raise the incline to 12 percent and the speed to 3 mph.</li><li>Walk for 30 minutes, standing tall, arms swinging, hands off the rails.</li><li>Cool down for 3 to 5 minutes at a flat, easy pace.</li></ol>`],
       ['Build up to it', table(['Week', 'Incline', 'Speed', 'Time'], [['1', '6%', '2.5 to 3 mph', '15 to 20 min'], ['2', '8%', '3 mph', '20 min'], ['3', '10%', '3 mph', '25 min'], ['4', '12%', '3 mph', '25 to 30 min']])],
-      ['What you need', `<p>A treadmill with at least 12 percent incline. Most full treadmills reach 10 to 15 percent; the <a href="/horizon-7-0-at-review/">Horizon 7.0 AT</a> goes to 15. Walking pads that reach 12 percent include the DeerRun Z10, and the Urevo CyberPad reaches 14.</p>${pick('cyberpad', 'Walking pad that can do 12-3-30', 'Automatic incline to 14 percent on a storable pad.')}`],
+      ['What you need', `<p>A treadmill with at least 12 percent incline. Most full treadmills reach 10 to 15 percent; the <a href="/horizon-7-0-at-review/">Horizon 7.0 AT</a> has 15 incline levels. Walking pads that reach 12 percent include the DeerRun Z10, and the Urevo CyberPad reaches 14.</p>${pick('cyberpad', 'Walking pad that can do 12-3-30', 'Automatic incline to 14 percent on a storable pad.')}`],
     ],
     asked: [
       ['How many calories does 12-3-30 burn?', 'About 330 calories for a 170-pound person by the ACSM walking equation. Try our <a href="/treadmill-incline-calculator/">incline calculator</a> for your weight.'],

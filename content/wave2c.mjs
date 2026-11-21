@@ -133,7 +133,7 @@ export default [
     ],
     asked: [
       ['What happens if you exceed the weight limit on a walking pad?', 'It may still run, but the motor and belt wear faster, the warranty may not cover failures, and the frame can flex.'],
-      ['What walking pad holds 400 pounds?', 'Few walking pads are rated that high. Heavier users usually do better with a full treadmill rated to 375 to 400 pounds, such as the Sole F80 at 375.'],
+      ['What walking pad holds 400 pounds?', 'Few walking pads are rated that high. Heavier users usually do better with a full treadmill rated to 375 to 400 pounds, such as the Sole F80 at 350 or the Sole F89 at 375.'],
     ],
     next: ['best-walking-pad-for-heavy-people', 'sole-treadmill-review', 'best-walking-pad'],
   },
@@ -163,10 +163,10 @@ export default [
     summary: 'The best treadmills for home use: full-size folding runners, wide-belt models for bigger users, and compact picks for apartments.',
     heading: 'The best treadmills for home',
     lede: 'The right home treadmill depends on whether you run, how much space you have and whether you want classes on a screen.',
-    quick: 'The best treadmill for most homes is the Horizon 7.0 AT: a 60-inch deck, 15 percent incline and no required membership. The Sole F63 is the durability pick, the NordicTrack T Series 10 is best for guided classes, and the Sole F80 suits bigger runners. For small spaces, the WalkingPad R2 folds in half and jogs to 7.5 mph.',
+    quick: 'The best treadmill for most homes is the Horizon 7.0 AT: a 60-inch deck, 15 incline levels and no required membership. The Sole F63 is the durability pick, the NordicTrack T Series 10 is best for guided classes, and the Sole F80 suits bigger runners. For small spaces, the WalkingPad R2 folds in half and jogs to 7.5 mph.',
     list: ['Horizon 7.0 AT', 'Sole F63', 'NordicTrack T Series 10', 'Sole F80', 'ProForm Pro 2000', 'WalkingPad R2'],
     parts: [
-      ['Our picks', `${pick('horizon70', 'Best overall', 'Full-size, quick to adjust and folds.')}${pick('solef63', 'Most durable', 'Heavy frame and long warranties.')}${pick('nordict10', 'Best for classes', 'iFit classes that adjust speed and incline for you.')}${pick('solef80', 'Best for bigger runners', 'A 22-inch belt and 375-pound capacity.')}${pick('proform2000', 'Best wide belt for the money', 'A 22-inch belt with decline.')}${pick('walkingpadr2', 'Best compact', 'Folds in half and still jogs.')}`],
+      ['Our picks', `${pick('horizon70', 'Best overall', 'Full-size, quick to adjust and folds.')}${pick('solef63', 'Most durable', 'Heavy frame and long warranties.')}${pick('nordict10', 'Best for classes', 'iFit classes that adjust speed and incline for you.')}${pick('solef80', 'Best for bigger runners', 'A 350-pound rating and a touchscreen on a 20 by 60 inch deck.')}${pick('proform2000', 'Best decline for the money', 'A full 20 by 60 inch deck with decline.')}${pick('walkingpadr2', 'Best compact', 'Folds in half and still jogs.')}`],
       ['Compare home treadmills', compare('Home treadmills compared', ['horizon70', 'solef63', 'nordict10', 'solef80', 'proform2000', 'walkingpadr2'], ['Belt', 'Speed', 'Incline', 'Max user', 'Price band'])],
       ['How to choose', `<ul><li><b>Deck:</b> 20 by 60 inches for running; 22 inches wide if you are broad or run fast.</li><li><b>Incline:</b> 10 to 15 percent covers most hill workouts.</li><li><b>Subscription:</b> decide whether you want a screen with classes or your own apps.</li><li><b>Space:</b> check footprint, folded size and ceiling height.</li></ul>`],
     ],
@@ -201,10 +201,10 @@ export default [
     summary: 'The best incline treadmills for hill walking and hiking training, from 15 percent folding treadmills to walking pads with automatic incline.',
     heading: 'The best incline treadmills',
     lede: 'Incline walking burns far more energy than flat walking at the same speed, with less pounding than running.',
-    quick: 'The best incline treadmill for most people is the Horizon 7.0 AT, with 15 percent incline on a full folding deck. The Bowflex Treadmill 10 adds 5 percent decline for hiking practice, and the ProForm Pro 2000 pairs incline with a wide belt. For small spaces, the Urevo CyberPad walking pad reaches 14 percent.',
+    quick: 'The best incline treadmill for most people is the Horizon 7.0 AT, with 15 incline levels on a full folding deck. The Bowflex Treadmill 10 adds 5 percent decline for hiking practice, and the ProForm Pro 2000 pairs incline with decline. For small spaces, the Urevo CyberPad walking pad reaches 14 percent.',
     list: ['Horizon 7.0 AT', 'Bowflex Treadmill 10', 'ProForm Pro 2000', 'Sole F63', 'Urevo CyberPad'],
     parts: [
-      ['Our picks', `${pick('horizon70', 'Best overall', 'Fifteen percent incline with fast dial controls.')}${pick('bowflex10', 'Best for hiking practice', 'Decline as well as incline.')}${pick('proform2000', 'Best wide belt with incline', 'Incline and decline on a 22-inch belt.')}${pick('solef63', 'Most durable', 'Fifteen percent incline on Sole\'s sturdy frame.')}${pick('cyberpad', 'Best walking pad', 'Incline to 14 percent on a pad you can store.')}`],
+      ['Our picks', `${pick('horizon70', 'Best overall', 'Fifteen percent incline with fast dial controls.')}${pick('bowflex10', 'Best for hiking practice', 'Decline as well as incline.')}${pick('proform2000', 'Best decline with incline', 'Incline and decline on a 20 by 60 inch deck.')}${pick('solef63', 'Most durable', 'Fifteen percent incline on Sole\'s sturdy frame.')}${pick('cyberpad', 'Best walking pad', 'Incline to 14 percent on a pad you can store.')}`],
       ['Compare', compare('Incline treadmills compared', ['horizon70', 'bowflex10', 'proform2000', 'solef63', 'cyberpad'], ['Incline', 'Speed', 'Max user', 'Price band'])],
       ['Getting started with incline', `<p>Start at 3 to 5 percent and build up. Avoid holding the handrails, which cuts the work. Try the <a href="/incline-treadmill-workout/">incline treadmill workout</a> or the popular <a href="/12-3-30-treadmill-workout/">12-3-30 workout</a>.</p>`],
     ],
@@ -220,10 +220,10 @@ export default [
     summary: 'The best treadmills for walking: walking pads, under-desk treadmills and folding treadmills with incline for hill walks.',
     heading: 'The best walking treadmills',
     lede: 'If you only walk, you do not need a 12 mph motor. You need a comfortable deck, incline and a quiet belt.',
-    quick: 'The best walking treadmill for most people is the Urevo CyberPad, a walking pad with automatic incline to 14 percent and a 350-pound limit. For long daily desk sessions, the LifeSpan TR1200-DT3 is built to last. If you want handrails and steep incline, the Horizon 7.0 AT is the full-size choice.',
+    quick: 'The best walking treadmill for most people is the Urevo CyberPad, a walking pad with automatic incline to 14 percent and a 350-pound limit per Urevo. For long daily desk sessions, the LifeSpan TR1200-DT3 is built to last. If you want handrails and steep incline, the Horizon 7.0 AT is the full-size choice.',
     list: ['Urevo CyberPad', 'LifeSpan TR1200-DT3', 'Horizon 7.0 AT', 'WalkingPad Z1', 'Goplus 2-in-1 Folding Treadmill'],
     parts: [
-      ['Our picks', `${pick('cyberpad', 'Best overall', 'Incline, a roomy deck and high capacity.')}${pick('lifespan', 'Best for all-day walking', 'Built for long daily sessions.')}${pick('horizon70', 'Best full-size', 'Handrails and 15 percent incline.')}${pick('walkingpadz1', 'Best quiet folding', 'Folds in half and runs quietly.')}${pick('goplus', 'Best budget', 'Walk under a desk or jog with the rail up.')}`],
+      ['Our picks', `${pick('cyberpad', 'Best overall', 'Incline, a roomy deck and high capacity.')}${pick('lifespan', 'Best for all-day walking', 'Built for long daily sessions.')}${pick('horizon70', 'Best full-size', 'Handrails and 15 incline levels.')}${pick('walkingpadz1', 'Best quiet folding', 'Folds in half and runs quietly.')}${pick('goplus', 'Best budget', 'Walk under a desk or jog with the rail up.')}`],
       ['Compare', compare('Walking treadmills compared', ['cyberpad', 'lifespan', 'horizon70', 'walkingpadz1', 'goplus'], ['Type', 'Speed', 'Incline', 'Price band'])],
     ],
     asked: [
@@ -294,7 +294,7 @@ export default [
     quick: 'Pair a quiet walking pad like the Urevo CyberPad or WalkingPad Z1 with a dual-motor standing desk like the FlexiSpot E7, which stays steady at walking height. Set the desk so your elbows are at about 90 degrees while you stand on the pad, which is usually 3 to 5 inches higher than your normal standing height. Walk at 1.5 to 2.5 mph while typing.',
     list: ['Urevo CyberPad', 'WalkingPad Z1', 'LifeSpan TR1200-DT3', 'FlexiSpot E7 Standing Desk', 'VIVO Electric Standing Desk'],
     parts: [
-      ['Walking pads to pair', `${pick('cyberpad', 'Best all-round', 'Incline for breaks and a long walking area.')}${pick('walkingpadz1', 'Best quiet', 'Rated under 40 dB and folds away.')}${pick('lifespan', 'Best for all-day use', 'Wide belt built for long sessions.')}`],
+      ['Walking pads to pair', `${pick('cyberpad', 'Best all-round', 'Incline for breaks and a long walking area.')}${pick('walkingpadz1', 'Best quiet', 'A brushless motor the maker lists below 65 dB, and it folds away.')}${pick('lifespan', 'Best for all-day use', 'Wide belt built for long sessions.')}`],
       ['Standing desks to pair', `${pick('flexispot', 'Best desk', 'Dual motors keep it steady at walking height.')}${pick('vivo', 'Best budget desk', 'Fine for laptop work.')}`],
       ['Setup checklist', `<ul><li>Add the pad's height (about 4 to 6 inches) to your desk height.</li><li>Put your monitor at eye level so you do not look down.</li><li>Use a wrist rest or a keyboard tray for steadier typing.</li><li>Place a mat under the pad to protect floors.</li><li>Keep the pad remote on the desk.</li></ul>`],
     ],
