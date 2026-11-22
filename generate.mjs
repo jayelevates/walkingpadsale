@@ -6,6 +6,7 @@ import { ORIGIN, SITE, WRITER, ISO, AS_OF, safe } from './lib/site.mjs';
 import pages from './content/pages.mjs';
 import { autolink } from './lib/links.mjs';
 import { ANCHORS } from './lib/anchors.mjs';
+import { IMG } from './lib/images.mjs';
 import legal from './content/legal.mjs';
 
 const root = dirname(fileURLToPath(import.meta.url));
@@ -30,6 +31,11 @@ const SHELF = [
   ['Care', ['how-to-lube-a-walking-pad', 'how-to-tighten-walking-pad-belt', 'walking-pad-on-carpet']],
 ];
 for (const d of pages) if (!d.plain && !SHELF.some(([, l]) => l.includes(d.path))) throw new Error('Missing from guides page: ' + d.path);
+const groupOf = (p) => (SHELF.find(([, l]) => l.includes(p)) || [])[0];
+// A page's own photo, else its guides-group photo. Legal pages, 404 and the guides hub get none.
+const pic = (d) => (!d.path ? IMG.home : d.legal || d.path === 'guides' || d.path === '404' ? null : IMG.pages[d.path] || IMG.groups[groupOf(d.path)] || null);
+const imgTag = ([n, alt], sizes) => `<img src="/img/${n}-1200.webp" srcset="/img/${n}-720.webp 720w, /img/${n}-1200.webp 1200w" sizes="${sizes}" width="1200" height="670" alt="${safe(alt)}" fetchpriority="high" decoding="async">`;
+
 const shelved = SHELF.flatMap(([, l]) => l).length;
 docs.push({
   path: 'guides', short: 'All guides', tab: `All Walking Pad and Treadmill Guides | ${SITE}`,
@@ -44,7 +50,7 @@ function graph(d) {
   if (d.path && !d.legal && d.path !== 'guides') trail.push({ '@type': 'ListItem', position: 2, name: 'Guides', item: abs('guides') });
   if (d.path) trail.push({ '@type': 'ListItem', position: trail.length + 1, name: d.short || d.heading, item: abs(d.path) });
   if (d.path) g.push({ '@type': 'BreadcrumbList', itemListElement: trail });
-  if (!d.legal) g.push({ '@type': 'Article', headline: d.heading, description: d.summary, url: abs(d.path), datePublished: d.iso || ISO, dateModified: d.iso || ISO, image: `${ORIGIN}/share/${d.path || 'index'}.png`, author: { '@type': 'Person', name: WRITER }, publisher: { '@id': ORIGIN + '/#org' }, isPartOf: { '@id': ORIGIN + '/#site' }, mainEntityOfPage: abs(d.path) });
+  if (!d.legal) g.push({ '@type': 'Article', headline: d.heading, description: d.summary, url: abs(d.path), datePublished: d.iso || ISO, dateModified: d.iso || ISO, image: pic(d) ? [`${ORIGIN}/share/${d.path || 'index'}.png`, `${ORIGIN}/img/${pic(d)[0]}-1200.webp`] : `${ORIGIN}/share/${d.path || 'index'}.png`, author: { '@type': 'Person', name: WRITER }, publisher: { '@id': ORIGIN + '/#org' }, isPartOf: { '@id': ORIGIN + '/#site' }, mainEntityOfPage: abs(d.path) });
   // Review pages: Product is the top entity and carries the review, so Google's Product snippet has its required "review" field.
   if (!d.legal && d.review) g.push({ '@type': 'Product', name: d.review.name, brand: { '@type': 'Brand', name: d.review.brand }, review: { '@type': 'Review', name: d.heading, url: abs(d.path), datePublished: d.iso || ISO, author: { '@type': 'Person', name: WRITER }, publisher: { '@id': ORIGIN + '/#org' }, reviewRating: { '@type': 'Rating', ratingValue: d.review.score, bestRating: 10, worstRating: 1 } } });
   if (d.list?.length) g.push({ '@type': 'ItemList', name: d.heading, numberOfItems: d.list.length, itemListElement: d.list.map((n, i) => ({ '@type': 'ListItem', position: i + 1, name: n })) });
@@ -73,8 +79,10 @@ function render(d) {
   const tops = [...(parts.map((p) => p[1]).join('')).matchAll(/<article class="pick" id="(pick-[a-z0-9]+)"><header><p class="award">(.*?)<\/p><h3>(.*?)<\/h3>/g)];
   const glance = tops.length > 2 ? `<div class="glance"><b>Top picks at a glance</b><ul>${tops.map((m) => `<li><a href="#${m[1]}"><span>${m[2]}</span>${m[3]}</a></li>`).join('')}</ul></div>` : '';
   const quick = d.quick ? `<div class="answer"><b>Bottom line</b><p>${d.quick}</p></div>` : '';
-  const head = d.path ? `<p class="trail"><a href="/">Home</a> &rsaquo; ${!d.legal && d.path !== 'guides' ? '<a href="/guides/">Guides</a> &rsaquo; ' : ''}${safe(d.short || d.heading)}</p><h1>${safe(d.heading)}</h1>${d.lede ? `<p class="lede">${d.lede}</p>` : ''}${stamp}${quick}${glance}` : quick + glance;
-  const hero = d.path ? '' : `<div class="hero"><div class="shell"><div><h1>${safe(d.heading)}</h1><p>${d.lede}</p><small>By ${WRITER}. Updated <time datetime="${ISO}">${AS_OF}</time>.</small></div>${d.hero || ''}</div></div>`;
+  const ph = d.path ? pic(d) : null;
+  const fig = ph ? `<figure class="shot">${imgTag(ph, '(max-width: 800px) 100vw, 760px')}</figure>` : '';
+  const head = d.path ? `<p class="trail"><a href="/">Home</a> &rsaquo; ${!d.legal && d.path !== 'guides' ? '<a href="/guides/">Guides</a> &rsaquo; ' : ''}${safe(d.short || d.heading)}</p><h1>${safe(d.heading)}</h1>${d.lede ? `<p class="lede">${d.lede}</p>` : ''}${stamp}${fig}${quick}${glance}` : quick + glance;
+  const hero = d.path ? '' : `<div class="hero"><div class="shell"><div><h1>${safe(d.heading)}</h1><p>${d.lede}</p><small>By ${WRITER}. Updated <time datetime="${ISO}">${AS_OF}</time>.</small></div>${IMG.home ? `<figure class="hero-shot">${imgTag(IMG.home, '(max-width: 900px) 100vw, 520px')}</figure>` : d.hero || ''}</div></div>`;
   return `<!doctype html>
 <html lang="en-US">
 <head>
