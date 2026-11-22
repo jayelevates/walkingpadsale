@@ -19,6 +19,8 @@ const idOf = (s) => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g
 const style = readFileSync(join(root, 'lib/theme.css'), 'utf8').replace(/\s+/g, ' ').replace(/\s*([{};:,>])\s*/g, '$1');
 
 const MENU = [['Deals', ''], ['Black Friday', 'walking-pad-black-friday-deals'], ['Best walking pads', 'best-walking-pad'], ['With incline', 'best-walking-pad-with-incline'], ['Treadmills', 'best-treadmill-for-home'], ['All guides', 'guides']];
+
+const stringHash = (s) => { let h = 0; for (let i = 0; i < s.length; i++) h = (h * 31 + s.charCodeAt(i)) | 0; return Math.abs(h); };
 const SHELF = [
   ['Deals and timing', ['', 'walking-pad-black-friday-deals', 'treadmill-black-friday-deals', 'treadmill-deals', 'best-time-to-buy-a-treadmill']],
   ['Best walking pads', ['best-walking-pad', 'best-walking-pad-with-incline', 'best-walking-pad-with-handle', 'best-under-desk-treadmill', 'best-quiet-walking-pad', 'best-cheap-walking-pad', 'best-walking-pad-for-heavy-people', 'best-walking-pad-for-seniors', 'best-walking-pad-for-tall-people', 'best-mini-treadmill']],
@@ -73,7 +75,12 @@ function render(d) {
   const refs = d.refs?.length ? `<section class="refs"><h2 id="sources">Sources</h2><ol>${d.refs.map(([t, u]) => `<li><a href="${u}" rel="nofollow noopener">${safe(t)}</a></li>`).join('')}</ol></section>` : '';
   const next0 = (d.next || []).map(find).filter(Boolean);
   const grp = (p) => fmapCols.findIndex(([, f]) => f(p || ''));
-  const next = d.legal || !d.path || d.path === 'guides' ? next0 : [...next0, ...pages.filter((x) => x.path && !x.legal && x.path !== 'guides' && x.path !== d.path && !next0.includes(x) && grp(x.path) === grp(d.path))].slice(0, 6);
+  const allInCluster = pages.filter((x) => x.path && !x.legal && x.path !== 'guides' && grp(x.path) === grp(d.path));
+  const myIdx = Math.max(0, allInCluster.findIndex((x) => x.path === d.path));
+  const siblings = allInCluster.filter((x) => x.path !== d.path && !next0.includes(x));
+  const offset = siblings.length ? ((myIdx + 1) % siblings.length) : 0;
+  const rotated = siblings.length ? [...siblings.slice(offset), ...siblings.slice(0, offset)] : [];
+  const next = d.legal || !d.path || d.path === 'guides' ? next0 : [...next0, ...rotated].slice(0, 6);
   const more = next.length ? `<section class="more"><h2>Read next</h2><ul class="tiles">${next.map((n) => `<li><a href="${href(n.path)}"><b>${safe(n.short || n.heading)}</b><span>${safe(n.blurb || n.summary)}</span></a></li>`).join('')}</ul></section>` : '';
   // Cross-cluster strip: one representative page from each other SHELF group.
   const curGrp = SHELF.findIndex(([, l]) => l.includes(d.path));
