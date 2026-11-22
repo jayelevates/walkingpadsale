@@ -162,3 +162,12 @@ footer.base p{max-width:72ch;margin:.5rem 0 0;color:#787F8B}
 @media (max-width:800px){.fmap{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:600px){body{font-size:1rem}.menu{flex-wrap:nowrap;overflow-x:auto;width:100%;padding-bottom:.3rem;margin-left:0}.menu a{white-space:nowrap}.tiles{grid-template-columns:1fr}.tiles li:last-child{border-bottom:0}.hero h1{font-size:2.6rem}}
 @media (max-width:700px){section>table{display:block;overflow-x:auto}}
+
+/* Explore other topics: sports switchboard */
+.explore{margin:1.5rem 0 0;padding:1.4rem 1.5rem;background:var(--belt);color:#fff;border-left:6px solid var(--tangerine)}
+.explore b{display:block;font:800 .72rem/1 var(--display);font-stretch:85%;color:var(--tangerine);letter-spacing:.14em;text-transform:uppercase;margin-bottom:1rem}
+.explore ul{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:.5rem 1rem}
+.explore li{margin:0}
+.explore a{display:block;text-decoration:none;color:#fff;text-decoration-color:transparent;font:800 .9rem/1.2 var(--display);font-stretch:85%;padding:.7rem .9rem;background:var(--belt-2);text-transform:uppercase;letter-spacing:.02em}
+.explore a span{display:block;font:700 .64rem/1 var(--display);font-stretch:85%;color:var(--tangerine);margin-bottom:.4rem;letter-spacing:.14em;text-transform:uppercase}
+.explore a:hover{background:var(--tangerine)}

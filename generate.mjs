@@ -75,6 +75,12 @@ function render(d) {
   const grp = (p) => fmapCols.findIndex(([, f]) => f(p || ''));
   const next = d.legal || !d.path || d.path === 'guides' ? next0 : [...next0, ...pages.filter((x) => x.path && !x.legal && x.path !== 'guides' && x.path !== d.path && !next0.includes(x) && grp(x.path) === grp(d.path))].slice(0, 6);
   const more = next.length ? `<section class="more"><h2>Read next</h2><ul class="tiles">${next.map((n) => `<li><a href="${href(n.path)}"><b>${safe(n.short || n.heading)}</b><span>${safe(n.blurb || n.summary)}</span></a></li>`).join('')}</ul></section>` : '';
+  // Cross-cluster strip: one representative page from each other SHELF group.
+  const curGrp = SHELF.findIndex(([, l]) => l.includes(d.path));
+  const explore = d.path && !d.legal && d.path !== 'guides' && curGrp !== -1 ? (() => {
+    const picks = SHELF.map(([n, l], i) => i === curGrp ? null : l.map(find).find(x => x && x.path !== d.path) && { grp: n, page: l.map(find).find(x => x && x.path !== d.path) }).filter(Boolean);
+    return picks.length ? `<nav class="explore" aria-label="Explore other topics"><b>Explore other topics</b><ul>${picks.map(x => `<li><a href="/${x.page.path}/"><span>${safe(x.grp)}</span>${safe(x.page.short || x.page.heading)}</a></li>`).join('')}</ul></nav>` : '';
+  })() : '';
   const stamp = d.legal || d.nostamp ? '' : `<p class="stamp">By ${WRITER}. Updated <time datetime="${d.iso || ISO}">${d.asOf || AS_OF}</time>.</p>`;
   const tops = [...(parts.map((p) => p[1]).join('')).matchAll(/<article class="pick" id="(pick-[a-z0-9]+)"><header><p class="award">(.*?)<\/p><h3>(.*?)<\/h3>/g)];
   const glance = tops.length > 2 ? `<div class="glance"><b>Top picks at a glance</b><ul>${tops.map((m) => `<li><a href="#${m[1]}"><span>${m[2]}</span>${m[3]}</a></li>`).join('')}</ul></div>` : '';
@@ -111,7 +117,7 @@ ${graph(d)}
 <a class="jump" href="#content">Skip to content</a>
 <header class="bar"><div class="shell"><a class="mark" href="/">${cup}<span>walkingpadsale</span></a><nav class="menu" aria-label="Primary">${MENU.map(([t, p]) => `<a href="${href(p)}"${p === d.path ? ' aria-current="page"' : ''}>${t}</a>`).join('')}</nav></div></header>
 ${hero}
-<div class="shell cols${toc ? '' : ' one'}" id="content"><main>${head}<div class="prose">${main}</div>${qa}${refs}${more}</main>${toc}</div>
+<div class="shell cols${toc ? '' : ' one'}" id="content"><main>${head}<div class="prose">${main}</div>${qa}${refs}${more}${explore}</main>${toc}</div>
 <footer class="base"><div class="shell">${fmap}<strong>${SITE}</strong><nav aria-label="Footer"><a href="/guides/">All guides</a><a href="/how-we-choose/">How we choose</a><a href="/affiliate-disclosure/">Affiliate disclosure</a><a href="/privacy/">Privacy</a><a href="/terms/">Terms</a><a href="/contact/">Contact</a></nav><p>We may earn a commission when you buy through links on this site, at no cost to you. Speeds, limits and prices come from maker listings and change often, so check the seller's page before you buy. Talk to a doctor before starting a new exercise routine.</p></div></footer>
 ${d.script ? `<script>${d.script}</script>` : ''}
 </body>
